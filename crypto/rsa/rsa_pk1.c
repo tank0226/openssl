@@ -1,5 +1,5 @@
 /*
- * Copyright 1995-2020 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright 1995-2021 The OpenSSL Project Authors. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -20,7 +20,7 @@
 #include <openssl/rsa.h>
 #include <openssl/rand.h>
 /* Just for the SSL_MAX_MASTER_KEY_LENGTH value */
-#include <openssl/ssl.h>
+#include <openssl/prov_ssl.h>
 #include "internal/cryptlib.h"
 #include "crypto/rsa.h"
 #include "rsa_local.h"

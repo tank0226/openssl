@@ -52,8 +52,8 @@ EVP_MD_CTX_type, EVP_MD_CTX_pkey_ctx, EVP_MD_CTX_md_data
  int EVP_MD_CTX_test_flags(const EVP_MD_CTX *ctx, int flags);
 
  int EVP_Q_digest(OSSL_LIB_CTX *libctx, const char *name, const char *propq,
-                  const void *data, size_t count,
-                  unsigned char *md, unsigned int *size);
+                  const void *data, size_t datalen,
+                  unsigned char *md, size_t *mdlen);
  int EVP_Digest(const void *data, size_t count, unsigned char *md,
                 unsigned int *size, const EVP_MD *type, ENGINE *impl);
  int EVP_DigestInit_ex2(EVP_MD_CTX *ctx, const EVP_MD *type,
@@ -234,9 +234,10 @@ as a parameter descriptor.
 Sets, clears and tests I<ctx> flags.  See L</FLAGS> below for more information.
 
 =item EVP_Q_digest() is a quick one-shot digest function.
-It hashes I<count> bytes of data at I<data> using the digest algorithm I<name>,
-which is fetched using the optional I<libctx> and I<propq> parameters.
-The digest value is placed in I<md> and its length is written at I<size>
+
+It hashes I<datalen> bytes of data at I<data> using the digest algorithm
+I<name>, which is fetched using the optional I<libctx> and I<propq> parameters.
+The digest value is placed in I<md> and its length is written at I<mdlen>
 if the pointer is not NULL. At most B<EVP_MAX_MD_SIZE> bytes will be written.
 
 =item EVP_Digest()
@@ -691,7 +692,11 @@ L<EVP_MD_meth_new(3)>,
 L<openssl-dgst(1)>,
 L<evp(7)>,
 L<OSSL_PROVIDER(3)>,
-L<OSSL_PARAM(3)>
+L<OSSL_PARAM(3)>,
+L<property(7)>,
+L<crypto(7)/ALGORITHM FETCHING>,
+L<provider-digest(7)>,
+L<life_cycle-digest(7)>
 
 The full list of digest algorithms are provided below.
 
@@ -706,7 +711,6 @@ L<EVP_sha224(3)>,
 L<EVP_sha3_224(3)>,
 L<EVP_sm3(3)>,
 L<EVP_whirlpool(3)>
-L<crypto(7)/ALGORITHM FETCHING>
 
 =head1 HISTORY
 

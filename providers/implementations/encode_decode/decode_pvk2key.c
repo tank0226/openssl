@@ -47,8 +47,6 @@ struct keytype_desc_st {
 };
 
 static OSSL_FUNC_decoder_freectx_fn pvk2key_freectx;
-static OSSL_FUNC_decoder_gettable_params_fn pvk2key_gettable_params;
-static OSSL_FUNC_decoder_get_params_fn pvk2key_get_params;
 static OSSL_FUNC_decoder_decode_fn pvk2key_decode;
 static OSSL_FUNC_decoder_export_object_fn pvk2key_export_object;
 
@@ -58,6 +56,8 @@ static OSSL_FUNC_decoder_export_object_fn pvk2key_export_object;
 struct pvk2key_ctx_st {
     PROV_CTX *provctx;
     const struct keytype_desc_st *desc;
+    /* The selection that is passed to der2key_decode() */
+    int selection;
 };
 
 static struct pvk2key_ctx_st *
@@ -79,27 +79,6 @@ static void pvk2key_freectx(void *vctx)
     OPENSSL_free(ctx);
 }
 
-static const OSSL_PARAM *pvk2key_gettable_params(ossl_unused void *provctx)
-{
-    static const OSSL_PARAM gettables[] = {
-        { OSSL_DECODER_PARAM_INPUT_TYPE, OSSL_PARAM_UTF8_PTR, NULL, 0, 0 },
-        OSSL_PARAM_END,
-    };
-
-    return gettables;
-}
-
-static int pvk2key_get_params(OSSL_PARAM params[])
-{
-    OSSL_PARAM *p;
-
-    p = OSSL_PARAM_locate(params, OSSL_DECODER_PARAM_INPUT_TYPE);
-    if (p != NULL && !OSSL_PARAM_set_utf8_ptr(p, "PVK"))
-        return 0;
-
-    return 1;
-}
-
 static int pvk2key_decode(void *vctx, OSSL_CORE_BIO *cin, int selection,
                          OSSL_CALLBACK *data_cb, void *data_cbarg,
                          OSSL_PASSPHRASE_CALLBACK *pw_cb, void *pw_cbarg)
@@ -108,6 +87,8 @@ static int pvk2key_decode(void *vctx, OSSL_CORE_BIO *cin, int selection,
     BIO *in = ossl_bio_new_from_core_bio(ctx->provctx, cin);
     void *key = NULL;
     int ok = 0;
+
+    ctx->selection = selection;
 
     if ((selection == 0
          || (selection & OSSL_KEYMGMT_SELECT_PRIVATE_KEY) != 0)
@@ -198,8 +179,7 @@ static int pvk2key_export_object(void *vctx,
         /* The contents of the reference is the address to our object */
         keydata = *(void **)reference;
 
-        return export(keydata, OSSL_KEYMGMT_SELECT_ALL,
-                      export_cb, export_cbarg);
+        return export(keydata, ctx->selection, export_cb, export_cbarg);
     }
     return 0;
 }
@@ -243,10 +223,6 @@ static void rsa_adjust(void *key, struct pvk2key_ctx_st *ctx)
           (void (*)(void))pvk2##keytype##_newctx },                     \
         { OSSL_FUNC_DECODER_FREECTX,                                    \
           (void (*)(void))pvk2key_freectx },                            \
-        { OSSL_FUNC_DECODER_GETTABLE_PARAMS,                            \
-          (void (*)(void))pvk2key_gettable_params },                    \
-        { OSSL_FUNC_DECODER_GET_PARAMS,                                 \
-          (void (*)(void))pvk2key_get_params },                         \
         { OSSL_FUNC_DECODER_DECODE,                                     \
           (void (*)(void))pvk2key_decode },                             \
         { OSSL_FUNC_DECODER_EXPORT_OBJECT,                              \

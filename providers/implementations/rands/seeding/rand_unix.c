@@ -40,6 +40,9 @@
 # include <sys/param.h>
 # include <sys/random.h>
 #endif
+#if defined(__APPLE__)
+# include <CommonCrypto/CommonRandom.h>
+#endif
 
 #if (defined(OPENSSL_SYS_UNIX) && !defined(OPENSSL_SYS_VXWORKS)) \
      || defined(__DJGPP__)
@@ -76,7 +79,9 @@ static uint64_t get_timer_bits(void);
  * macro that might be undefined.
  */
 # undef OSSL_POSIX_TIMER_OKAY
-# if defined(_POSIX_TIMERS) && _POSIX_TIMERS > 0
+/* On some systems, _POSIX_TIMERS is defined but empty.
+ * Subtracting by 0 when comparing avoids an error in this case. */
+# if defined(_POSIX_TIMERS) && _POSIX_TIMERS -0 > 0
 #  if defined(__GLIBC__)
 #   if defined(__GLIBC_PREREQ)
 #    if __GLIBC_PREREQ(2, 17)
@@ -364,6 +369,12 @@ static ssize_t syscall_random(void *buf, size_t buflen)
         if (errno != ENOSYS)
             return -1;
     }
+#    elif defined(__APPLE__)
+
+    if (CCRandomGenerateBytes(buf, buflen) == kCCSuccess)
+	    return (ssize_t)buflen;
+
+    return -1;
 #    else
     union {
         void *p;

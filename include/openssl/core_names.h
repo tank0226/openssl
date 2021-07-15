@@ -75,6 +75,7 @@ extern "C" {
 #define OSSL_CIPHER_PARAM_CUSTOM_IV            "custom-iv"    /* int, 0 or 1 */
 #define OSSL_CIPHER_PARAM_CTS                  "cts"          /* int, 0 or 1 */
 #define OSSL_CIPHER_PARAM_TLS1_MULTIBLOCK      "tls-multi"    /* int, 0 or 1 */
+#define OSSL_CIPHER_PARAM_HAS_RAND_KEY         "has-randkey"  /* int, 0 or 1 */
 #define OSSL_CIPHER_PARAM_KEYLEN               "keylen"       /* size_t */
 #define OSSL_CIPHER_PARAM_IVLEN                "ivlen"        /* size_t */
 #define OSSL_CIPHER_PARAM_IV                   "iv"           /* octet_string OR octet_ptr */
@@ -468,16 +469,11 @@ extern "C" {
  */
 #define OSSL_ENCODER_PARAM_CIPHER           OSSL_ALG_PARAM_CIPHER
 #define OSSL_ENCODER_PARAM_PROPERTIES       OSSL_ALG_PARAM_PROPERTIES
-#define OSSL_ENCODER_PARAM_INPUT_TYPE       "input-type"
-#define OSSL_ENCODER_PARAM_OUTPUT_TYPE      "output-type"
-#define OSSL_ENCODER_PARAM_OUTPUT_STRUCTURE "output-structure"
 /* Currently PVK only, but reusable for others as needed */
 #define OSSL_ENCODER_PARAM_ENCRYPT_LEVEL    "encrypt-level"
 #define OSSL_ENCODER_PARAM_SAVE_PARAMETERS  "save-parameters" /* integer */
 
 #define OSSL_DECODER_PARAM_PROPERTIES       OSSL_ALG_PARAM_PROPERTIES
-#define OSSL_DECODER_PARAM_INPUT_TYPE       "input-type"
-#define OSSL_DECODER_PARAM_INPUT_STRUCTURE  "input-structure"
 
 /* Passphrase callback parameters */
 #define OSSL_PASSPHRASE_PARAM_INFO      "info"

@@ -324,6 +324,15 @@ static int afalg_fin_cipher_aio(afalg_aio *aio, int sfd, unsigned char *buf,
         }
         if (eval > 0) {
 
+#ifdef OSSL_SANITIZE_MEMORY
+            /*
+             * In a memory sanitiser build, the changes to memory made by the
+             * system call aren't reliably detected.  By initialising the
+             * memory here, the sanitiser is told that they are okay.
+             */
+            memset(events, 0, sizeof(events));
+#endif
+
             /* Get results of AIO read */
             r = io_getevents(aio->aio_ctx, 1, MAX_INFLIGHTS,
                              events, &timeout);
@@ -544,7 +553,7 @@ static int afalg_cipher_init(EVP_CIPHER_CTX *ctx, const unsigned char *key,
                              const unsigned char *iv, int enc)
 {
     int ciphertype;
-    int ret;
+    int ret, len;
     afalg_ctx *actx;
     const char *ciphername;
 
@@ -588,8 +597,9 @@ static int afalg_cipher_init(EVP_CIPHER_CTX *ctx, const unsigned char *key,
     if (ret < 1)
         return 0;
 
-
-    ret = afalg_set_key(actx, key, EVP_CIPHER_CTX_get_key_length(ctx));
+    if ((len = EVP_CIPHER_CTX_get_key_length(ctx)) <= 0)
+        goto err;
+    ret = afalg_set_key(actx, key, len);
     if (ret < 1)
         goto err;
 

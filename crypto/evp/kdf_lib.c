@@ -11,13 +11,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "internal/cryptlib.h"
-#include <openssl/engine.h>
 #include <openssl/evp.h>
-#include <openssl/x509v3.h>
 #include <openssl/kdf.h>
 #include <openssl/core.h>
 #include <openssl/core_names.h>
-#include "crypto/asn1.h"
 #include "crypto/evp.h"
 #include "internal/numbers.h"
 #include "internal/provider.h"
@@ -125,7 +122,7 @@ void EVP_KDF_CTX_reset(EVP_KDF_CTX *ctx)
 size_t EVP_KDF_CTX_get_kdf_size(EVP_KDF_CTX *ctx)
 {
     OSSL_PARAM params[2] = { OSSL_PARAM_END, OSSL_PARAM_END };
-    size_t s;
+    size_t s = 0;
 
     if (ctx == NULL)
         return 0;

@@ -1353,7 +1353,9 @@ static int fix_rsa_pss_saltlen(enum state state,
         if (i == OSSL_NELEM(str_value_map)) {
             BIO_snprintf(ctx->name_buf, sizeof(ctx->name_buf), "%d", ctx->p1);
         } else {
-            strcpy(ctx->name_buf, str_value_map[i].ptr);
+            /* This won't truncate but it will quiet static analysers */
+            strncpy(ctx->name_buf, str_value_map[i].ptr, sizeof(ctx->name_buf) - 1);
+            ctx->name_buf[sizeof(ctx->name_buf) - 1] = '\0';
         }
         ctx->p2 = ctx->name_buf;
         ctx->p1 = strlen(ctx->p2);
@@ -1704,6 +1706,10 @@ static int get_ec_decoded_from_explicit_params(enum state state,
 #ifndef OPENSSL_NO_EC
     case EVP_PKEY_EC:
         val = EC_KEY_decoded_from_explicit_params(EVP_PKEY_get0_EC_KEY(pkey));
+        if (val < 0) {
+            ERR_raise(ERR_LIB_EVP, EVP_R_INVALID_KEY);
+            return 0;
+        }
         break;
 #endif
     default:

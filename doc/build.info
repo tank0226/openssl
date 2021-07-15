@@ -471,6 +471,10 @@ DEPEND[html/man3/ADMISSIONS.html]=man3/ADMISSIONS.pod
 GENERATE[html/man3/ADMISSIONS.html]=man3/ADMISSIONS.pod
 DEPEND[man/man3/ADMISSIONS.3]=man3/ADMISSIONS.pod
 GENERATE[man/man3/ADMISSIONS.3]=man3/ADMISSIONS.pod
+DEPEND[html/man3/ASN1_EXTERN_FUNCS.html]=man3/ASN1_EXTERN_FUNCS.pod
+GENERATE[html/man3/ASN1_EXTERN_FUNCS.html]=man3/ASN1_EXTERN_FUNCS.pod
+DEPEND[man/man3/ASN1_EXTERN_FUNCS.3]=man3/ASN1_EXTERN_FUNCS.pod
+GENERATE[man/man3/ASN1_EXTERN_FUNCS.3]=man3/ASN1_EXTERN_FUNCS.pod
 DEPEND[html/man3/ASN1_INTEGER_get_int64.html]=man3/ASN1_INTEGER_get_int64.pod
 GENERATE[html/man3/ASN1_INTEGER_get_int64.html]=man3/ASN1_INTEGER_get_int64.pod
 DEPEND[man/man3/ASN1_INTEGER_get_int64.3]=man3/ASN1_INTEGER_get_int64.pod
@@ -511,6 +515,10 @@ DEPEND[html/man3/ASN1_TYPE_get.html]=man3/ASN1_TYPE_get.pod
 GENERATE[html/man3/ASN1_TYPE_get.html]=man3/ASN1_TYPE_get.pod
 DEPEND[man/man3/ASN1_TYPE_get.3]=man3/ASN1_TYPE_get.pod
 GENERATE[man/man3/ASN1_TYPE_get.3]=man3/ASN1_TYPE_get.pod
+DEPEND[html/man3/ASN1_aux_cb.html]=man3/ASN1_aux_cb.pod
+GENERATE[html/man3/ASN1_aux_cb.html]=man3/ASN1_aux_cb.pod
+DEPEND[man/man3/ASN1_aux_cb.3]=man3/ASN1_aux_cb.pod
+GENERATE[man/man3/ASN1_aux_cb.3]=man3/ASN1_aux_cb.pod
 DEPEND[html/man3/ASN1_generate_nconf.html]=man3/ASN1_generate_nconf.pod
 GENERATE[html/man3/ASN1_generate_nconf.html]=man3/ASN1_generate_nconf.pod
 DEPEND[man/man3/ASN1_generate_nconf.3]=man3/ASN1_generate_nconf.pod
@@ -519,6 +527,10 @@ DEPEND[html/man3/ASN1_item_d2i_bio.html]=man3/ASN1_item_d2i_bio.pod
 GENERATE[html/man3/ASN1_item_d2i_bio.html]=man3/ASN1_item_d2i_bio.pod
 DEPEND[man/man3/ASN1_item_d2i_bio.3]=man3/ASN1_item_d2i_bio.pod
 GENERATE[man/man3/ASN1_item_d2i_bio.3]=man3/ASN1_item_d2i_bio.pod
+DEPEND[html/man3/ASN1_item_new.html]=man3/ASN1_item_new.pod
+GENERATE[html/man3/ASN1_item_new.html]=man3/ASN1_item_new.pod
+DEPEND[man/man3/ASN1_item_new.3]=man3/ASN1_item_new.pod
+GENERATE[man/man3/ASN1_item_new.3]=man3/ASN1_item_new.pod
 DEPEND[html/man3/ASN1_item_sign.html]=man3/ASN1_item_sign.pod
 GENERATE[html/man3/ASN1_item_sign.html]=man3/ASN1_item_sign.pod
 DEPEND[man/man3/ASN1_item_sign.3]=man3/ASN1_item_sign.pod
@@ -2825,6 +2837,7 @@ DEPEND[man/man3/s2i_ASN1_IA5STRING.3]=man3/s2i_ASN1_IA5STRING.pod
 GENERATE[man/man3/s2i_ASN1_IA5STRING.3]=man3/s2i_ASN1_IA5STRING.pod
 IMAGEDOCS[man3]=
 HTMLDOCS[man3]=html/man3/ADMISSIONS.html \
+html/man3/ASN1_EXTERN_FUNCS.html \
 html/man3/ASN1_INTEGER_get_int64.html \
 html/man3/ASN1_INTEGER_new.html \
 html/man3/ASN1_ITEM_lookup.html \
@@ -2835,8 +2848,10 @@ html/man3/ASN1_STRING_new.html \
 html/man3/ASN1_STRING_print_ex.html \
 html/man3/ASN1_TIME_set.html \
 html/man3/ASN1_TYPE_get.html \
+html/man3/ASN1_aux_cb.html \
 html/man3/ASN1_generate_nconf.html \
 html/man3/ASN1_item_d2i_bio.html \
+html/man3/ASN1_item_new.html \
 html/man3/ASN1_item_sign.html \
 html/man3/ASYNC_WAIT_CTX_new.html \
 html/man3/ASYNC_start_job.html \
@@ -3414,6 +3429,7 @@ html/man3/i2d_re_X509_tbs.html \
 html/man3/o2i_SCT_LIST.html \
 html/man3/s2i_ASN1_IA5STRING.html
 MANDOCS[man3]=man/man3/ADMISSIONS.3 \
+man/man3/ASN1_EXTERN_FUNCS.3 \
 man/man3/ASN1_INTEGER_get_int64.3 \
 man/man3/ASN1_INTEGER_new.3 \
 man/man3/ASN1_ITEM_lookup.3 \
@@ -3424,8 +3440,10 @@ man/man3/ASN1_STRING_new.3 \
 man/man3/ASN1_STRING_print_ex.3 \
 man/man3/ASN1_TIME_set.3 \
 man/man3/ASN1_TYPE_get.3 \
+man/man3/ASN1_aux_cb.3 \
 man/man3/ASN1_generate_nconf.3 \
 man/man3/ASN1_item_d2i_bio.3 \
+man/man3/ASN1_item_new.3 \
 man/man3/ASN1_item_sign.3 \
 man/man3/ASYNC_WAIT_CTX_new.3 \
 man/man3/ASYNC_start_job.3 \
@@ -4089,6 +4107,10 @@ DEPEND[html/man7/EVP_KDF-KRB5KDF.html]=man7/EVP_KDF-KRB5KDF.pod
 GENERATE[html/man7/EVP_KDF-KRB5KDF.html]=man7/EVP_KDF-KRB5KDF.pod
 DEPEND[man/man7/EVP_KDF-KRB5KDF.7]=man7/EVP_KDF-KRB5KDF.pod
 GENERATE[man/man7/EVP_KDF-KRB5KDF.7]=man7/EVP_KDF-KRB5KDF.pod
+DEPEND[html/man7/EVP_KDF-PBKDF1.html]=man7/EVP_KDF-PBKDF1.pod
+GENERATE[html/man7/EVP_KDF-PBKDF1.html]=man7/EVP_KDF-PBKDF1.pod
+DEPEND[man/man7/EVP_KDF-PBKDF1.7]=man7/EVP_KDF-PBKDF1.pod
+GENERATE[man/man7/EVP_KDF-PBKDF1.7]=man7/EVP_KDF-PBKDF1.pod
 DEPEND[html/man7/EVP_KDF-PBKDF2.html]=man7/EVP_KDF-PBKDF2.pod
 GENERATE[html/man7/EVP_KDF-PBKDF2.html]=man7/EVP_KDF-PBKDF2.pod
 DEPEND[man/man7/EVP_KDF-PBKDF2.7]=man7/EVP_KDF-PBKDF2.pod
@@ -4357,6 +4379,14 @@ DEPEND[html/man7/fips_module.html]=man7/fips_module.pod
 GENERATE[html/man7/fips_module.html]=man7/fips_module.pod
 DEPEND[man/man7/fips_module.7]=man7/fips_module.pod
 GENERATE[man/man7/fips_module.7]=man7/fips_module.pod
+DEPEND[html/man7/life_cycle-cipher.html]=man7/life_cycle-cipher.pod
+GENERATE[html/man7/life_cycle-cipher.html]=man7/life_cycle-cipher.pod
+DEPEND[man/man7/life_cycle-cipher.7]=man7/life_cycle-cipher.pod
+GENERATE[man/man7/life_cycle-cipher.7]=man7/life_cycle-cipher.pod
+DEPEND[html/man7/life_cycle-digest.html]=man7/life_cycle-digest.pod
+GENERATE[html/man7/life_cycle-digest.html]=man7/life_cycle-digest.pod
+DEPEND[man/man7/life_cycle-digest.7]=man7/life_cycle-digest.pod
+GENERATE[man/man7/life_cycle-digest.7]=man7/life_cycle-digest.pod
 DEPEND[html/man7/life_cycle-kdf.html]=man7/life_cycle-kdf.pod
 GENERATE[html/man7/life_cycle-kdf.html]=man7/life_cycle-kdf.pod
 DEPEND[man/man7/life_cycle-kdf.7]=man7/life_cycle-kdf.pod
@@ -4365,6 +4395,10 @@ DEPEND[html/man7/life_cycle-mac.html]=man7/life_cycle-mac.pod
 GENERATE[html/man7/life_cycle-mac.html]=man7/life_cycle-mac.pod
 DEPEND[man/man7/life_cycle-mac.7]=man7/life_cycle-mac.pod
 GENERATE[man/man7/life_cycle-mac.7]=man7/life_cycle-mac.pod
+DEPEND[html/man7/life_cycle-pkey.html]=man7/life_cycle-pkey.pod
+GENERATE[html/man7/life_cycle-pkey.html]=man7/life_cycle-pkey.pod
+DEPEND[man/man7/life_cycle-pkey.7]=man7/life_cycle-pkey.pod
+GENERATE[man/man7/life_cycle-pkey.7]=man7/life_cycle-pkey.pod
 DEPEND[html/man7/life_cycle-rand.html]=man7/life_cycle-rand.pod
 GENERATE[html/man7/life_cycle-rand.html]=man7/life_cycle-rand.pod
 DEPEND[man/man7/life_cycle-rand.7]=man7/life_cycle-rand.pod
@@ -4495,8 +4529,11 @@ DEPEND[html/man7/x509.html]=man7/x509.pod
 GENERATE[html/man7/x509.html]=man7/x509.pod
 DEPEND[man/man7/x509.7]=man7/x509.pod
 GENERATE[man/man7/x509.7]=man7/x509.pod
-IMAGEDOCS[man7]=man7/img/kdf.png \
+IMAGEDOCS[man7]=man7/img/cipher.png \
+man7/img/digest.png \
+man7/img/kdf.png \
 man7/img/mac.png \
+man7/img/pkey.png \
 man7/img/rand.png
 HTMLDOCS[man7]=html/man7/EVP_ASYM_CIPHER-SM2.html \
 html/man7/EVP_CIPHER-AES.html \
@@ -4515,6 +4552,7 @@ html/man7/EVP_CIPHER-SM4.html \
 html/man7/EVP_KDF-HKDF.html \
 html/man7/EVP_KDF-KB.html \
 html/man7/EVP_KDF-KRB5KDF.html \
+html/man7/EVP_KDF-PBKDF1.html \
 html/man7/EVP_KDF-PBKDF2.html \
 html/man7/EVP_KDF-PKCS12KDF.html \
 html/man7/EVP_KDF-SCRYPT.html \
@@ -4582,8 +4620,11 @@ html/man7/ct.html \
 html/man7/des_modes.html \
 html/man7/evp.html \
 html/man7/fips_module.html \
+html/man7/life_cycle-cipher.html \
+html/man7/life_cycle-digest.html \
 html/man7/life_cycle-kdf.html \
 html/man7/life_cycle-mac.html \
+html/man7/life_cycle-pkey.html \
 html/man7/life_cycle-rand.html \
 html/man7/migration_guide.html \
 html/man7/openssl-core.h.html \
@@ -4633,6 +4674,7 @@ man/man7/EVP_CIPHER-SM4.7 \
 man/man7/EVP_KDF-HKDF.7 \
 man/man7/EVP_KDF-KB.7 \
 man/man7/EVP_KDF-KRB5KDF.7 \
+man/man7/EVP_KDF-PBKDF1.7 \
 man/man7/EVP_KDF-PBKDF2.7 \
 man/man7/EVP_KDF-PKCS12KDF.7 \
 man/man7/EVP_KDF-SCRYPT.7 \
@@ -4700,8 +4742,11 @@ man/man7/ct.7 \
 man/man7/des_modes.7 \
 man/man7/evp.7 \
 man/man7/fips_module.7 \
+man/man7/life_cycle-cipher.7 \
+man/man7/life_cycle-digest.7 \
 man/man7/life_cycle-kdf.7 \
 man/man7/life_cycle-mac.7 \
+man/man7/life_cycle-pkey.7 \
 man/man7/life_cycle-rand.7 \
 man/man7/migration_guide.7 \
 man/man7/openssl-core.h.7 \

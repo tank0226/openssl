@@ -16,7 +16,6 @@
 #include <openssl/core_dispatch.h>
 #include <openssl/core_names.h>
 #include <openssl/params.h>
-#include <openssl/engine.h>
 #include <openssl/evp.h>
 #include <openssl/cmac.h>
 
@@ -87,6 +86,8 @@ static void *cmac_dup(void *vsrc)
         return NULL;
 
     dst = cmac_new(src->provctx);
+    if (dst == NULL)
+        return NULL;
     if (!CMAC_CTX_copy(dst->ctx, src->ctx)
         || !ossl_prov_cipher_copy(&dst->cipher, &src->cipher)) {
         cmac_free(dst);
@@ -109,7 +110,7 @@ static int cmac_setkey(struct cmac_data_st *macctx,
                        ossl_prov_cipher_cipher(&macctx->cipher),
                        ossl_prov_cipher_engine(&macctx->cipher));
     ossl_prov_cipher_reset(&macctx->cipher);
-    return rv;    
+    return rv;
 }
 
 static int cmac_init(void *vmacctx, const unsigned char *key,

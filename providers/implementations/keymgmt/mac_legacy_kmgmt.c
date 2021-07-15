@@ -18,6 +18,9 @@
 #include <openssl/evp.h>
 #include <openssl/proverr.h>
 #include <openssl/param_build.h>
+#ifndef FIPS_MODULE
+# include <openssl/engine.h>
+#endif
 #include "internal/param_build_set.h"
 #include "prov/implementations.h"
 #include "prov/providercommon.h"
@@ -190,7 +193,8 @@ static int mac_key_fromdata(MAC_KEY *key, const OSSL_PARAM params[])
             return 0;
         }
         OPENSSL_secure_clear_free(key->priv_key, key->priv_key_len);
-        key->priv_key = OPENSSL_secure_malloc(p->data_size);
+        /* allocate at least one byte to distinguish empty key from no key set */
+        key->priv_key = OPENSSL_secure_malloc(p->data_size > 0 ? p->data_size : 1);
         if (key->priv_key == NULL) {
             ERR_raise(ERR_LIB_PROV, ERR_R_MALLOC_FAILURE);
             return 0;
